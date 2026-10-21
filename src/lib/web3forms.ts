@@ -1,7 +1,9 @@
 import type { Order } from '@/lib/supabase';
 
-// Web3Forms access keys are designed to be public (client-side); the recipient email is configured on web3forms.com.
-const WEB3FORMS_ACCESS_KEY = '33579ed5-c719-460c-8993-bf0606dfe166';
+declare const __WEB3FORMS_ACCESS_KEY__: string;
+
+// Injected at build time from the API_KEY env var (see vite.config.ts); the recipient email is configured on web3forms.com.
+const WEB3FORMS_ACCESS_KEY = __WEB3FORMS_ACCESS_KEY__;
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export async function sendOrderEmail(order: Order): Promise<boolean> {
