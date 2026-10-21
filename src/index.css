@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-arabic: 'Cairo', 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+  }
+
+  /* Arabic / RTL typography */
+  html[lang='ar'] body {
+    font-family: var(--font-arabic);
+  }
+  html[lang='ar'] h1,
+  html[lang='ar'] h2,
+  html[lang='ar'] h3,
+  html[lang='ar'] h4,
+  html[lang='ar'] button,
+  html[lang='ar'] input,
+  html[lang='ar'] textarea,
+  html[lang='ar'] label,
+  html[lang='ar'] a {
+    font-family: var(--font-arabic);
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeSlide 0.18s ease-out;
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+}
