@@ -4,7 +4,7 @@ import type { Order } from '@/lib/supabase';
 const WEB3FORMS_ACCESS_KEY = '33579ed5-c719-460c-8993-bf0606dfe166';
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
-export async function sendOrderEmail(order: Order, imageFileName?: string): Promise<boolean> {
+export async function sendOrderEmail(order: Order): Promise<boolean> {
   const payload = {
     access_key: WEB3FORMS_ACCESS_KEY,
     subject: `Nouvelle commande - ${order.full_name}`,
@@ -17,11 +17,6 @@ export async function sendOrderEmail(order: Order, imageFileName?: string): Prom
     'Adresse de livraison': order.delivery_address,
     'Lien du produit': order.product_url || '—',
     'Détails du produit': order.product_details || '—',
-    'Image du produit': order.product_image_path
-      ? `${imageFileName ?? 'image'} (Supabase Storage: product-images/${order.product_image_path})`
-      : imageFileName
-        ? `${imageFileName} (non enregistrée)`
-        : '—',
     botcheck: '',
   };
 

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Send, CheckCircle2, Instagram, AlertCircle, Loader2, User, AtSign, Phone, MapPin, Link as LinkIcon, Package, ImagePlus, Hash } from 'lucide-react';
+import { Send, CheckCircle2, Instagram, AlertCircle, Loader2, User, AtSign, Phone, MapPin, Link as LinkIcon, Package, Hash } from 'lucide-react';
 import { useLang } from '@/lib/LanguageContext';
 import { supabase, type Order } from '@/lib/supabase';
 import { sendOrderEmail } from '@/lib/web3forms';
@@ -7,22 +7,13 @@ import { INSTAGRAM_URL, wilayas } from '@/lib/translations';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
-const IMAGE_EXTENSIONS: Record<string, string> = {
-  'image/jpeg': 'jpg',
-  'image/png': 'png',
-  'image/webp': 'webp',
-  'image/gif': 'gif',
-};
-
 export default function OrderForm() {
   const { lang, t } = useLang();
   const [status, setStatus] = useState<Status>('idle');
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [selectedFileName, setSelectedFileName] = useState('');
   const [formKey, setFormKey] = useState(0);
 
-  const validate = (data: Record<string, string>, image: File | null) => {
+  const validate = (data: Record<string, string>) => {
     const errs: Record<string, string> = {};
     const required = ['fullName', 'instagram', 'phone', 'city', 'postalCode', 'address'];
     for (const f of required) {
@@ -33,17 +24,11 @@ export default function OrderForm() {
     if (data.postalCode && !/^\d{5}$/.test(data.postalCode.trim())) {
       errs.postalCode = t.form.errors.invalidPostalCode;
     }
-    if (!data.productUrl?.trim() && !image) {
+    if (!data.productUrl?.trim() && !data.details?.trim()) {
       errs.productUrl = t.form.errors.required;
     }
     if (data.productUrl && !/^https?:\/\/.+\..+/i.test(data.productUrl.trim())) {
       errs.productUrl = t.form.errors.invalidUrl;
-    }
-    if (image && !IMAGE_EXTENSIONS[image.type]) {
-      errs.productImage = t.form.errors.invalidImage;
-    }
-    if (image && image.size > MAX_IMAGE_SIZE) {
-      errs.productImage = t.form.errors.imageTooLarge;
     }
     if (data.phone && !/^[+\d\s()-]{6,}$/.test(data.phone.trim())) {
       errs.phone = t.form.errors.invalidPhone;
@@ -64,10 +49,7 @@ export default function OrderForm() {
       productUrl: String(fd.get('productUrl') ?? ''),
       details: String(fd.get('details') ?? ''),
     };
-    const selectedImage = fd.get('productImage');
-    const image = selectedImage instanceof File && selectedImage.size > 0 ? selectedImage : null;
-
-    const errs = validate(data, image);
+    const errs = validate(data);
     setFormErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
@@ -85,21 +67,13 @@ export default function OrderForm() {
 
     let savedToDatabase = false;
     try {
-      if (image) {
-        const extension = IMAGE_EXTENSIONS[image.type];
-        const imagePath = `products/${crypto.randomUUID()}.${extension}`;
-        const { error: uploadError } = await supabase.storage
-          .from('product-images')
-          .upload(imagePath, image, { contentType: image.type, upsert: false });
-        if (!uploadError) order.product_image_path = imagePath;
-      }
       const { error } = await supabase.from('orders').insert(order);
       savedToDatabase = !error;
     } catch {
       savedToDatabase = false;
     }
 
-    const emailSent = await sendOrderEmail(order, image?.name);
+    const emailSent = await sendOrderEmail(order);
 
     setStatus(emailSent || savedToDatabase ? 'success' : 'error');
   };
@@ -107,7 +81,6 @@ export default function OrderForm() {
   const reset = () => {
     setStatus('idle');
     setFormErrors({});
-    setSelectedFileName('');
     setFormKey((key) => key + 1);
   };
 
@@ -238,33 +211,6 @@ export default function OrderForm() {
                 )}
               </div>
             ))}
-          </div>
-
-          <div>
-            <label htmlFor="productImage" className="block text-sm font-medium text-slate-700 mb-1.5">
-              {t.form.fields.productImage}
-            </label>
-            <div className={`relative rounded-xl border border-dashed transition focus-within:ring-2 focus-within:ring-teal-500/40 focus-within:border-teal-500 ${
-              formErrors.productImage ? 'border-red-300 bg-red-50/30' : 'border-slate-300'
-            }`}>
-              <span className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5 text-slate-400">
-                <ImagePlus className="h-5 w-5" />
-              </span>
-              <input
-                id="productImage"
-                name="productImage"
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/gif"
-                onChange={(event) => setSelectedFileName(event.target.files?.[0]?.name ?? '')}
-                className="w-full cursor-pointer rounded-xl px-3 py-3 ps-11 text-sm text-slate-600 file:me-3 file:rounded-lg file:border-0 file:bg-teal-50 file:px-3 file:py-2 file:font-medium file:text-teal-700 hover:file:bg-teal-100"
-              />
-            </div>
-            <p className="mt-1.5 text-xs text-slate-500">
-              {selectedFileName || t.form.fields.productImageHint}
-            </p>
-            {formErrors.productImage && (
-              <p className="mt-1.5 text-xs text-red-600">{formErrors.productImage}</p>
-            )}
           </div>
 
           <button
