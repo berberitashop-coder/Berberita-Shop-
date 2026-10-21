@@ -66,10 +66,12 @@ export default function OrderForm() {
     };
 
     let savedToDatabase = false;
-    try {
-      const { error } = await supabase.from('orders').insert(order);
-      savedToDatabase = !error;
-    } catch {
+  try {
+if (supabase) {
+const { error } = await supabase.from('orders').insert(order);
+savedToDatabase = !error;
+}
+} catch {
       savedToDatabase = false;
     }
 
