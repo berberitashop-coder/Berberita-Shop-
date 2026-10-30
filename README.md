@@ -17,7 +17,7 @@ Copiez `.env.example` vers `.env.local` et renseignez :
 - `VITE_SUPABASE_ANON_KEY`
 - `VITE_WEB3FORMS_ACCESS_KEY`
 
-Le build échoue volontairement si `VITE_WEB3FORMS_ACCESS_KEY` est absent.
+Le build échoue volontairement si `VITE_WEB3FORMS_ACCESS_KEY` et l’ancien nom `API_KEY` sont absents. `VITE_WEB3FORMS_ACCESS_KEY` est recommandé ; `API_KEY` est conservé temporairement pour les déploiements existants.
 
 ## Vérification
 

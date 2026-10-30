@@ -1,6 +1,6 @@
 import type { Order } from '@/lib/supabase';
 
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string;
+const WEB3FORMS_ACCESS_KEY = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || import.meta.env.API_KEY) as string;
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export async function sendOrderEmail(order: Order): Promise<boolean> {
