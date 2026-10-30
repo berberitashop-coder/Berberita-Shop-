@@ -80,7 +80,7 @@ export const wilayas: { code: string; ar: string; fr: string }[] = [
 
 type Dict = {
   meta: { title: string; description: string };
-  nav: { brand: string; home: string; howItWorks: string; order: string; faq: string };
+  nav: { brand: string; home: string; howItWorks: string; order: string; faq: string; menu: string };
   hero: {
     badge: string; title: string; subtitle: string; cta: string;
     stepsTitle: string; steps: { title: string; desc: string }[];
@@ -99,7 +99,7 @@ type Dict = {
       details: string; detailsPlaceholder: string;
     };
     required: string; submit: string; submitting: string;
-    errors: { required: string; invalidUrl: string; invalidPhone: string; invalidPostalCode: string; invalidImage: string; imageTooLarge: string };
+    errors: { required: string; productReference: string; invalidUrl: string; invalidPhone: string; invalidPostalCode: string; invalidImage: string; imageTooLarge: string };
   };
   success: { title: string; message: string; instagramBtn: string; newOrder: string };
   error: { title: string; message: string; retry: string };
@@ -119,6 +119,7 @@ export const translations: Record<Language, Dict> = {
       howItWorks: `كيف نعمل`,
       order: `اطلب الآن`,
       faq: `الأسئلة الشائعة`,
+      menu: `القائمة`,
     },
     hero: {
       badge: `خدمة موثوقة`,
@@ -161,6 +162,7 @@ export const translations: Record<Language, Dict> = {
       errors: {
         required: `يرجى ملء جميع الحقول المطلوبة`,
         invalidUrl: `يرجى إدخال رابط صحيح للمنتج`,
+        productReference: `يرجى إدخال رابط المنتج أو تفاصيله`,
         invalidPhone: `يرجى إدخال رقم هاتف صحيح`,
         invalidPostalCode: `يرجى إدخال رمز بريدي صحيح من خمسة أرقام`,
         invalidImage: `يرجى اختيار صورة بصيغة JPG أو PNG أو WebP أو GIF`,
@@ -184,7 +186,7 @@ export const translations: Record<Language, Dict> = {
         { q: `كيف أدفع ثمن المنتج؟`, a: `بعد إرسال طلبك، نتواصل معك عبر إنستغرام لتأكيد السعر وطريقة الدفع. للدفع بالدينار نقبل Baridi MOB وCCP، وللدفع بالعملة الأجنبية نقبل التحويل البنكي.` },
         { q: `كم تستغرق مدة التوصيل؟`, a: `تتراوح مدة التوصيل عادةً بين 15 و 45 يومًا، وقد تمتد في حالات استثنائية حتى شهرين. يختلف هذا الأجل حسب عدة عوامل: طبيعة المنتج، بلد المنشأ (أساسًا الصين أو أوروبا)، ووسيلة النقل المختارة جوًا أو بحرًا. كما قد تؤثر ظروف استثنائية ذات طابع جيوسياسي، في حالات نادرة، على الآجال.` },
         { q: `كم تكلفة الشحن؟`, a: `تُحسب تكلفة الشحن حسب وزن المنتج ووجهة التوصيل. سنخبرك بالتكلفة الإجمالية قبل تأكيد الطلب.` },
-        { q: `ماذا لو وصل المنتج تالفًا؟`, a: ` لنكون صريحين معك، هناك احتمال بنسبة 90% أن يتم استرداد المبلغ كاملًا أو نطلب تغيير المنتج. وقلنا 90% وليس 100% لأن الأمر يعتمد على عقلية البائع ومصداقيته مع الزبائن، غير أن أغلبية البائعين (90% أو أكثر) لن نواجه معهم أي مشكلة في استرداد المبلغ أو استبدال المنتج. وفي الوقت ذاته، يمكننا أن نؤكد لك بنسبة 100% أن مبلغك سيُسترد كاملًا، لأننا نتقن اختيار البائعين ذوي المصداقية العالية، فهذا هو صميم عملنا. (ملاحظة: حتى الآن، جميع المنتجات التي إشتريناها وصلت سليمة دون أي تلف أو كسر أو عيب؛ نسبة النجاح حتى أكتوبر 2026 هي 100%، وسيتم تحديث هذه النسبة إذا تلقّينا أي شكوى من زبائننا).` },
+        { q: `ماذا لو وصل المنتج تالفًا؟`, a: `لنكون صريحين معك، هناك احتمال بنسبة 90% أن يتم استرداد المبلغ كاملًا أو نطلب تغيير المنتج. وقلنا 90% وليس 100% لأن الأمر يعتمد على عقلية البائع ومصداقيته مع الزبائن، غير أن أغلبية البائعين (90% أو أكثر) لن نواجه معهم أي مشكلة في استرداد المبلغ أو استبدال المنتج. وفي الوقت ذاته، يمكننا أن نؤكد لك بنسبة 100% أن مبلغك سيُسترد كاملًا، لأننا نتقن اختيار البائعين ذوي المصداقية العالية، فهذا هو صميم عملنا. (ملاحظة: حتى الآن، جميع المنتجات التي اشتريناها وصلت سليمة دون أي تلف أو كسر أو عيب؛ نسبة النجاح حتى أكتوبر 2026 هي 100%، وسيتم تحديث هذه النسبة إذا تلقّينا أي شكوى من زبائننا).` },
         { q: `كم تبلغ تكلفة أو عمولة الخدمة عند الشراء عبر موقعكم؟`, a: `نحرص في Berberita Shop على توفير أسعار واضحة وشفافة لخدمة الشراء والدفع الإلكتروني. يتم حساب التكلفة الإجمالية كالتالي: (سعر المنتج بالدينار مع سعر التوصيل + عمولة الخدمة)\n\n▫️ الطلبيات أقل من 2,000 دج: عمولة ثابتة قدرها 350 دج.\n▫️ الطلبيات من 2,000 دج إلى 9,000 دج: عمولة ثابتة قدرها 550 دج.\n▫️ الطلبيات الأكثر من 9,000 دج: عمولة مميزة قدرها 8% فقط من قيمة المنتج.\n\n📌 ملاحظة: يتم حساب سعر المنتج بالدينار وفق سعر الصرف المعتمد يوم الشراء. يمكنك دائماً إرسال رابط المنتج في الخاص للحصول على السعر النهائي الإجمالي قبل الدفع!` },
       ],
     },
@@ -205,6 +207,7 @@ export const translations: Record<Language, Dict> = {
       howItWorks: `Comment ça marche`,
       order: `Commander`,
       faq: `FAQ`,
+      menu: `Menu`,
     },
     hero: {
       badge: `Service fiable`,
@@ -247,6 +250,7 @@ export const translations: Record<Language, Dict> = {
       errors: {
         required: `Veuillez remplir tous les champs requis`,
         invalidUrl: `Veuillez saisir un lien de produit valide`,
+        productReference: `Veuillez saisir le lien ou les détails du produit`,
         invalidPhone: `Veuillez saisir un numéro de téléphone valide`,
         invalidPostalCode: `Veuillez saisir un code postal valide à cinq chiffres`,
         invalidImage: `Veuillez choisir une image JPG, PNG, WebP ou GIF`,
@@ -267,7 +271,7 @@ export const translations: Record<Language, Dict> = {
     faq: {
       title: `Questions fréquentes`,
       items: [
-        { q: `Comment puis-je payer le produit ?`, a: `Après l'envoi de votre commande, nous vous contactons sur Instagram pour confirmer le prix et le mode de paiement. Nous acceptons le virement bancaire et postal.` },
+        { q: `Comment puis-je payer le produit ?`, a: `Après l'envoi de votre commande, nous vous contactons sur Instagram pour confirmer le prix et le mode de paiement. Pour les paiements en dinars, nous acceptons Baridi MOB et CCP ; pour les devises, le virement bancaire.` },
         { q: `Quels sont les délais de livraison ?`, a: `Le délai de livraison est généralement compris entre 15 et 45 jours. Dans des cas exceptionnels, il peut s'étendre jusqu'à deux mois. Ce délai varie selon plusieurs facteurs : la nature du produit, le pays d'origine (principalement la Chine ou l'Europe), ainsi que le mode de transport aérien ou maritime retenu. Des circonstances exceptionnelles d'ordre géopolitique peuvent également, dans de rares cas, influer sur les délais.` },
         { q: `Combien coûte la livraison ?`, a: `Les frais de livraison sont calculés selon le poids du produit et la destination. Nous vous communiquerons le coût total avant de confirmer la commande.` },
         { q: `Que faire si le produit arrive endommagé ?`, a: `Pour être tout à fait transparent avec vous, il y a 90 % de chances que vous soyez intégralement remboursé ou que nous demandions le remplacement du produit. Nous parlons de 90 % et non de 100 % car cela dépend de la mentalité et de la fiabilité du vendeur ; toutefois, la grande majorité des vendeurs (90 % et plus) ne posent aucun problème pour le remboursement ou l'échange. Parallèlement, nous pouvons vous affirmer à 100 % que vous serez intégralement remboursé, car notre métier consiste précisément à sélectionner des vendeurs hautement fiables. (Note : à ce jour, tous les produits que nous avons commandés sont arrivés intacts, sans aucun dommage, casse ou défaut ; notre taux de réussite jusqu'en octobre 2026 est de 100 %, et ce chiffre sera mis à jour si nous recevions une réclamation de la part d'un client).` },
@@ -291,6 +295,7 @@ export const translations: Record<Language, Dict> = {
       howItWorks: `How it works`,
       order: `Order now`,
       faq: `FAQ`,
+      menu: `Menu`,
     },
     hero: {
       badge: `Reliable service`,
@@ -333,6 +338,7 @@ export const translations: Record<Language, Dict> = {
       errors: {
         required: `Please fill in all required fields`,
         invalidUrl: `Please enter a valid product link`,
+        productReference: `Please enter the product link or details`,
         invalidPhone: `Please enter a valid phone number`,
         invalidPostalCode: `Please enter a valid five-digit postal code`,
         invalidImage: `Please choose a JPG, PNG, WebP, or GIF image`,
@@ -353,7 +359,7 @@ export const translations: Record<Language, Dict> = {
     faq: {
       title: `Frequently asked questions`,
       items: [
-        { q: `How do I pay for the product?`, a: `After you submit your order, we contact you on Instagram to confirm the price and payment method. We accept bank and postal transfers.` },
+        { q: `How do I pay for the product?`, a: `After you submit your order, we contact you on Instagram to confirm the price and payment method. For dinar payments, we accept Baridi MOB and CCP; for foreign currencies, bank transfer.` },
         { q: `How long does delivery take?`, a: `Delivery typically takes between 15 and 45 days. In exceptional cases, it can extend up to two months. This timeframe varies depending on several factors: the nature of the product, the country of origin (mainly China or Europe), and the chosen mode of transport, air or sea. Exceptional geopolitical circumstances may also, in rare cases, affect delivery times.` },
         { q: `How much is shipping?`, a: `Shipping costs are calculated based on product weight and destination. We'll tell you the total cost before confirming the order.` },
         { q: `What if the product arrives damaged?`, a: `To be fully transparent with you, there is a 90% chance that you will receive a full refund or that we will request a product replacement. We say 90% and not 100% because the outcome depends on the seller's mindset and reliability; however, the vast majority of sellers (90% or more) pose no issue for refunds or exchanges. At the same time, we can assure you with 100% confidence that your money will be fully refunded, because our core business is selecting highly reliable sellers. (Note: to date, every product we have ordered arrived intact, with no damage, breakage, or defect; our success rate as of October 2026 stands at 100%, and this figure will be updated should we receive any complaint from our customers).` },
@@ -368,4 +374,4 @@ export const translations: Record<Language, Dict> = {
   },
 };
 
-export const INSTAGRAM_URL = `https://www.instagram.com/berberita_shop?xtok=dDl1YXEzeXJsY3dl`;
+export const INSTAGRAM_URL = `https://www.instagram.com/berberita_shop`;

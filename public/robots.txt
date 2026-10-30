@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://berberita-shop.vercel.app/sitemap.xml
