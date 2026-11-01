@@ -80,7 +80,7 @@ export const wilayas: { code: string; ar: string; fr: string }[] = [
 
 type Dict = {
   meta: { title: string; description: string };
-  nav: { brand: string; home: string; howItWorks: string; order: string; faq: string; tracking: string; menu: string };
+  nav: { brand: string; home: string; howItWorks: string; order: string; estimator: string; faq: string; tracking: string; menu: string };
   hero: {
     badge: string; title: string; subtitle: string; cta: string;
     stepsTitle: string; steps: { title: string; desc: string }[];
@@ -105,6 +105,7 @@ type Dict = {
   error: { title: string; message: string; retry: string };
   faq: { title: string; items: { q: string; a: string }[] };
   tracking: { title: string; subtitle: string; orderNumber: string; orderNumberPlaceholder: string; phone: string; phonePlaceholder: string; search: string; loading: string; notFound: string; privacy: string; statuses: Record<string, string> };
+  estimator: { title: string; subtitle: string; amountLabel: string; amountHint: string; currencyLabel: string; loading: string; unavailable: string; enterAmount: string; updated: string; disclaimer: string; cta: string };
   footer: { rights: string; followInstagram: string; madeWith: string };
 };
 
@@ -119,6 +120,7 @@ export const translations: Record<Language, Dict> = {
       home: `الرئيسية`,
       howItWorks: `كيف نعمل`,
       order: `اطلب الآن`,
+      estimator: `تقدير السعر`,
       faq: `الأسئلة الشائعة`,
       tracking: `تتبع الطلب`,
       menu: `القائمة`,
@@ -193,6 +195,7 @@ export const translations: Record<Language, Dict> = {
       ],
     },
 tracking: { title: `تتبع طلبك`, subtitle: `أدخل رقم الطلب ورقم الهاتف المرتبط به لمعرفة آخر حالة.`, orderNumber: `رقم الطلب`, orderNumberPlaceholder: `مثال: BR-AB12CD34`, phone: `رقم الهاتف`, phonePlaceholder: `05 أو 06 أو 07...`, search: `تتبع الطلب`, loading: `جارٍ البحث...`, notFound: `لم نعثر على طلب بهذه المعلومات.`, privacy: `نطلب المعلومتين لحماية تفاصيل طلبك.`, statuses: { pending: `تم الاستلام`, paid: `تم الدفع`, ordered: `تم الطلب`, shipped: `تم الشحن`, arrived: `وصل` } },
+  estimator: { title: `تقدير السعر`, subtitle: `احسب التكلفة التقريبية بالدينار قبل إرسال طلبك.`, amountLabel: `السعر النهائي للمنتج (التوصيل مشمول)`, amountHint: `أدخل السعر الظاهر عند الدفع، مع رسوم التوصيل.`, currencyLabel: `العملة`, loading: `جارٍ تحميل أسعار الصرف...`, unavailable: `لا يتوفر تقدير حاليًا. راسلنا على إنستغرام لمعرفة السعر.`, enterAmount: `أدخل مبلغًا لرؤية التقدير.`, updated: `آخر تحديث`, disclaimer: `تقدير إرشادي. قد يتغير سعر الصرف. نؤكد السعر النهائي قبل أي طلب.`, cta: `اطلب هذا المنتج` },
   footer: {
   rights: `جميع الحقوق محفوظة`,
       followInstagram: `تابعنا على إنستغرام`,
@@ -209,6 +212,7 @@ tracking: { title: `تتبع طلبك`, subtitle: `أدخل رقم الطلب و
       home: `Accueil`,
       howItWorks: `Comment ça marche`,
       order: `Commander`,
+      estimator: `Estimer le prix`,
       faq: `FAQ`,
       tracking: `Suivi`,
       menu: `Menu`,
@@ -283,6 +287,7 @@ tracking: { title: `تتبع طلبك`, subtitle: `أدخل رقم الطلب و
       ],
     },
 tracking: { title: `Suivre votre commande`, subtitle: `Saisissez le numéro de commande et le téléphone associé pour voir son dernier état.`, orderNumber: `Numéro de commande`, orderNumberPlaceholder: `Exemple : BR-AB12CD34`, phone: `Téléphone`, phonePlaceholder: `05, 06 ou 07...`, search: `Suivre la commande`, loading: `Recherche...`, notFound: `Aucune commande ne correspond à ces informations.`, privacy: `Ces deux informations protègent les détails de votre commande.`, statuses: { pending: `Reçue`, paid: `Payée`, ordered: `Commandée`, shipped: `Expédiée`, arrived: `Arrivée` } },
+  estimator: { title: `Estimateur de prix`, subtitle: `Estimez le coût approximatif en dinars avant d'envoyer votre commande.`, amountLabel: `Prix final du produit (livraison incluse)`, amountHint: `Saisissez le prix affiché au moment de payer, frais de livraison compris.`, currencyLabel: `Devise`, loading: `Chargement des taux...`, unavailable: `Aucune estimation n'est disponible. Écrivez-nous sur Instagram pour obtenir le prix.`, enterAmount: `Saisissez un montant pour voir l'estimation.`, updated: `Taux mis à jour le`, disclaimer: `Estimation indicative. Le taux peut varier. Le prix final vous est confirmé avant toute commande.`, cta: `Commander ce produit` },
   footer: {
   rights: `Tous droits réservés`,
       followInstagram: `Suivez-nous sur Instagram`,
@@ -299,6 +304,7 @@ tracking: { title: `Suivre votre commande`, subtitle: `Saisissez le numéro de c
       home: `Home`,
       howItWorks: `How it works`,
       order: `Order now`,
+      estimator: `Price estimate`,
       faq: `FAQ`,
       tracking: `Track order`,
       menu: `Menu`,
@@ -373,6 +379,7 @@ tracking: { title: `Suivre votre commande`, subtitle: `Saisissez le numéro de c
       ],
     },
 tracking: { title: `Track your order`, subtitle: `Enter the order number and associated phone number to see its latest status.`, orderNumber: `Order number`, orderNumberPlaceholder: `Example: BR-AB12CD34`, phone: `Phone`, phonePlaceholder: `05, 06 or 07...`, search: `Track order`, loading: `Searching...`, notFound: `No order matches these details.`, privacy: `Both details help protect your order information.`, statuses: { pending: `Received`, paid: `Paid`, ordered: `Ordered`, shipped: `Shipped`, arrived: `Arrived` } },
+  estimator: { title: `Price estimator`, subtitle: `Estimate the approximate cost in dinars before sending your order.`, amountLabel: `Final product price (delivery included)`, amountHint: `Enter the price shown at checkout, including delivery fees.`, currencyLabel: `Currency`, loading: `Loading exchange rates...`, unavailable: `No estimate is currently available. Message us on Instagram for the price.`, enterAmount: `Enter an amount to see the estimate.`, updated: `Rate updated on`, disclaimer: `Indicative estimate. The rate may vary. Your final price is confirmed before any order.`, cta: `Order this product` },
   footer: {
   rights: `All rights reserved`,
       followInstagram: `Follow us on Instagram`,

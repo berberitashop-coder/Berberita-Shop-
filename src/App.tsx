@@ -1,6 +1,7 @@
 import { LanguageProvider } from '@/lib/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import PriceEstimator from '@/components/PriceEstimator';
 import OrderForm from '@/components/OrderForm';
 import FAQ from '@/components/FAQ';
 import OrderTracking from '@/components/OrderTracking';
@@ -14,6 +15,7 @@ function App() {
         <Header />
         <main id="main-content">
           <Hero />
+          <PriceEstimator />
           <OrderForm />
         <FAQ />
         <OrderTracking />
