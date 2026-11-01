@@ -12,8 +12,11 @@ const LangContext = createContext<LangContextType | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Language>(() => {
-    const saved = typeof window !== 'undefined' ? localStorage.getItem('app-lang') : null;
+    let saved: string | null = null;
+    try { saved = typeof window !== 'undefined' ? localStorage.getItem('app-lang') : null; } catch { saved = null; }
     if (saved === 'ar' || saved === 'fr' || saved === 'en') return saved;
+    if (typeof navigator !== 'undefined' && navigator.language.toLowerCase().startsWith('fr')) return 'fr';
+    if (typeof navigator !== 'undefined' && navigator.language.toLowerCase().startsWith('en')) return 'en';
     return 'ar';
   });
 
@@ -21,7 +24,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = (l: Language) => {
     setLangState(l);
-    if (typeof window !== 'undefined') localStorage.setItem('app-lang', l);
+    try { if (typeof window !== 'undefined') localStorage.setItem('app-lang', l); } catch { /* storage may be unavailable */ }
   };
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -19,6 +19,7 @@ export default function Header() {
     { href: '#how', label: t.nav.howItWorks },
     { href: '#order', label: t.nav.order },
     { href: '#faq', label: t.nav.faq },
+    { href: '#tracking', label: t.nav.tracking },
   ];
 
   return (
@@ -67,7 +68,9 @@ export default function Header() {
               type="button"
               className={`md:hidden flex h-9 w-9 items-center justify-center rounded-lg ${scrolled ? 'text-slate-800 hover:bg-slate-100' : 'text-white hover:bg-white/10'}`}
               onClick={() => setMenuOpen((o) => !o)}
-              aria-label="Menu"
+              aria-label={t.nav.menu}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -77,7 +80,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100 shadow-lg">
+        <div id="mobile-navigation" className="md:hidden bg-white border-t border-slate-100 shadow-lg">
           <nav className="px-4 py-3 space-y-1">
             {links.map((l) => (
               <a
