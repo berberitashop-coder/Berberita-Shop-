@@ -8,6 +8,7 @@ export const supabase: SupabaseClient | null =
 
 export type Order = {
   id?: string;
+  order_number?: string;
   full_name: string;
   instagram_username: string;
   phone: string;

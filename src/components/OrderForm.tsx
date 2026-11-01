@@ -50,7 +50,7 @@ export default function OrderForm() {
     setFormErrors(errs);
     if (Object.keys(errs).length) return;
     setStatus('submitting');
-    const order: Order = { full_name: data.fullName.trim(), instagram_username: data.instagram.trim().replace(/^@/, '').replace(/^https?:\/\/(?:www\.)?instagram\.com\//i, '').replace(/\?.*$/, ''), phone: data.phone.trim(), wilaya_city: data.city.trim(), postal_code: data.postalCode.trim(), delivery_address: data.address.trim(), product_url: data.productUrl.trim() || null, product_details: data.details.trim(), status: 'pending' };
+    const order: Order = { order_number: `BR-${crypto.randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase()}`, full_name: data.fullName.trim(), instagram_username: data.instagram.trim().replace(/^@/, '').replace(/^https?:\/\/(?:www\.)?instagram\.com\//i, '').replace(/\?.*$/, ''), phone: data.phone.trim(), wilaya_city: data.city.trim(), postal_code: data.postalCode.trim(), delivery_address: data.address.trim(), product_url: data.productUrl.trim() || null, product_details: data.details.trim(), status: 'pending' };
     const results = await Promise.allSettled([
       withTimeout((async () => { if (!supabase) throw new Error('Supabase is not configured'); const result = await supabase.from('orders').insert(order); if (result.error) throw result.error; })()),
       withTimeout(sendOrderEmail(order)),

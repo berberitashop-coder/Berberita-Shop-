@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import OrderForm from '@/components/OrderForm';
 import FAQ from '@/components/FAQ';
+import OrderTracking from '@/components/OrderTracking';
 import Footer from '@/components/Footer';
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
         <main id="main-content">
           <Hero />
           <OrderForm />
-          <FAQ />
-        </main>
+        <FAQ />
+        <OrderTracking />
+      </main>
         <Footer />
       </div>
     </LanguageProvider>

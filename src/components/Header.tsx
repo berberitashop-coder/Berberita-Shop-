@@ -19,6 +19,7 @@ export default function Header() {
     { href: '#how', label: t.nav.howItWorks },
     { href: '#order', label: t.nav.order },
     { href: '#faq', label: t.nav.faq },
+    { href: '#tracking', label: t.nav.tracking },
   ];
 
   return (
