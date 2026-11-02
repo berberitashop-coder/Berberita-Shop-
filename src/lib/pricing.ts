@@ -1,9 +1,9 @@
 export const PRICING_CONFIG = {
-  lowThresholdDzd: 2000,
-  highThresholdDzd: 9000,
+  lowThresholdDzd: 3000,
+  highThresholdDzd: 10000,
   lowCommissionDzd: 350,
   standardCommissionDzd: 550,
-  highCommissionRate: 0.08,
+  highCommissionRate: 0.06,
   roundingDzd: 10,
   maxAmount: 1_000_000,
 } as const;
